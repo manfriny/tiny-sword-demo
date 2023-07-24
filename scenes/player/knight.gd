@@ -64,7 +64,7 @@ func _on_animation_animation_finished(anim_name: String) -> void:
 		"attack":
 			can_attack = true	
 		"death":
-			get_tree().reload_current_scene()
+			transition_screen.fade_in()
 		_:
 			pass	
 		

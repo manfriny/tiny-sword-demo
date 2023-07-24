@@ -31,8 +31,8 @@ func generate_foam_tiles() -> void:
 	for cell in grass_used_cells:
 		if check_grass_neighbors(cell):
 			spawn_foam(cell)
-			print("spawn mare")
-	
+
+
 func check_grass_neighbors(cell: Vector2i) -> bool:
 	var left_neigbor: Vector2i = Vector2i(cell.x - 1, cell.y)
 	var right_neigbor: Vector2i = Vector2i(cell.x + 1, cell.y)

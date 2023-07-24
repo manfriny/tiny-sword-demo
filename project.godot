@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="tiny_sword_demo"
-run/main_scene="res://scenes/level/level.tscn"
+run/main_scene="res://scenes/management/menu.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+transition_screen="*res://scenes/management/transition_screen.tscn"
 
 [input]
 
