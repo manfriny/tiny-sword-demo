@@ -76,8 +76,7 @@ func _on_attack_area_body_entered(body):
 
 func update_health(value: int) -> void:
 	health -= value
-	print("-1")
-	print(health)
+	
 	if health < 1:
 		can_die = true
 		animation.play("death")

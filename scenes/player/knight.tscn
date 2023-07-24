@@ -374,5 +374,9 @@ libraries = {
 "": SubResource("AnimationLibrary_vyd6d")
 }
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.8, 0.8)
+position_smoothing_enabled = true
+
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
