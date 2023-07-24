@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c57jcs3e6dkj3"]
+
+[ext_resource type="PackedScene" uid="uid://iqvymev86dpw" path="res://scenes/enemies/goblin.tscn" id="1_2bvrc"]
+[ext_resource type="PackedScene" uid="uid://cx1tmsyslb1er" path="res://scenes/player/knight.tscn" id="2_5dy7o"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Goblin" parent="." instance=ExtResource("1_2bvrc")]
+position = Vector2(194, 203)
+move_speed = 192.0
+distance_threshold = 60.0
+
+[node name="Knight" parent="." instance=ExtResource("2_5dy7o")]
+position = Vector2(871, 460)
