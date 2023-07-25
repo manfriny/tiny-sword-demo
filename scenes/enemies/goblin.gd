@@ -10,6 +10,7 @@ const OFFSET: Vector2 = Vector2(0, 30)
 @export var move_speed: float = 192.0
 @export var distance_threshold: float = 60.0
 @export var health: int = 3
+@export var score: int = 100
 
 var player_ref: CharacterBody2D = null
 var can_die: bool = false
@@ -61,7 +62,7 @@ func update_health(value: int) -> void:
 	
 	if health < 1:
 		can_die = true
-		animation.play("death")		
+		animation.play("death")
 		return
 	
 	aux_animation_player.play("hit")
@@ -75,5 +76,7 @@ func _on_detection_area_body_exited(_body):
 
 func _on_animation_goblin_animation_finished(anim_name: String) -> void:
 	if anim_name == "death":
+		transition_screen.player_score += score
 		get_tree().call_group("level", "increase_kill_count")
+		get_tree().call_group("level", "update_score", transition_screen.player_score)
 		queue_free()
