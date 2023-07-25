@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3w24olw2htc1"]
+[gd_scene load_steps=10 format=3 uid="uid://d3w24olw2htc1"]
 
 [ext_resource type="Script" path="res://scenes/management/transition_screen.gd" id="1_kf6n5"]
 [ext_resource type="FontFile" uid="uid://b5b3uxi0dqgu6" path="res://assets/env/kurland.ttf" id="2_bj6ac"]
+[ext_resource type="AudioStream" uid="uid://hkdg28223my0" path="res://assets/music/Goblins_Dance_(Battle).wav" id="3_l2pqt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2k51b"]
 font = ExtResource("2_bj6ac")
@@ -135,5 +136,9 @@ autoplay = "fade_out"
 libraries = {
 "": SubResource("AnimationLibrary_25sg0")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_l2pqt")
+autoplay = true
 
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]

@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 transition_screen="*res://scenes/management/transition_screen.tscn"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 move_left={

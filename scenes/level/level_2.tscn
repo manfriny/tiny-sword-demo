@@ -5,7 +5,7 @@
 
 [node name="Level2" instance=ExtResource("1_130ja")]
 target_kill_count = 4
-next_level_scene_path = ""
+next_level_scene_path = "res://scenes/management/credits.tscn"
 current_level_scene_path = "res://scenes/level/level_2.tscn"
 
 [node name="Goblin3" parent="." index="4" instance=ExtResource("1_08ffl")]

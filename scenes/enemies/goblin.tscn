@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://iqvymev86dpw"]
+[gd_scene load_steps=16 format=3 uid="uid://iqvymev86dpw"]
 
 [ext_resource type="Script" path="res://scenes/enemies/goblin.gd" id="1_27ag4"]
 [ext_resource type="Texture2D" uid="uid://jv76gvefdlmm" path="res://assets/Factions/Goblins/Torch.png" id="1_dwg2c"]
 [ext_resource type="Texture2D" uid="uid://bcv3g6vj4hv6w" path="res://assets/Dead_and_Fire/Dead/Dead.png" id="2_rlo5j"]
+[ext_resource type="PackedScene" uid="uid://bct1typmv7wha" path="res://scenes/management/dust.tscn" id="4_s7e8h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r131e"]
 radius = 240.0
@@ -126,6 +127,20 @@ tracks/4/keys = {
 "method": &"spawn_attack_area"
 }]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["res://assets/sfx/orc_attack.wav"],
+"method": &"spawn_sfx"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_80xc1"]
 resource_name = "death"
@@ -177,6 +192,20 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["res://assets/sfx/orc_death.wav"],
+"method": &"spawn_sfx"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_4ykex"]
@@ -284,6 +313,23 @@ tracks/3/keys = {
 "update": 1,
 "values": [7, 8, 9, 10, 11, 12]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["res://assets/sfx/orc_walk.wav"],
+"method": &"spawn_sfx"
+}, {
+"args": ["res://assets/sfx/orc_walk.wav"],
+"method": &"spawn_sfx"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uai7r"]
 _data = {
@@ -324,6 +370,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 0.231373, 0.172549, 1), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["res://assets/sfx/orc_damage.wav"],
+"method": &"spawn_sfx"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1wupu"]
 _data = {
@@ -362,6 +422,10 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_1wupu")
 }
+
+[node name="Dust" parent="." instance=ExtResource("4_s7e8h")]
+position = Vector2(0, 30)
+emitting = false
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

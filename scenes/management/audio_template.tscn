@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwrl8sb4cuv4i"]
+
+[ext_resource type="Script" path="res://scenes/management/audio_template.gd" id="1_6ales"]
+
+[node name="AudioTemplate" type="AudioStreamPlayer2D"]
+script = ExtResource("1_6ales")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

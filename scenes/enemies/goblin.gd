@@ -2,10 +2,12 @@ extends CharacterBody2D
 
 const ATTACK_AREA: PackedScene = preload("res://scenes/enemies/enemy_attack_area.tscn")
 const OFFSET: Vector2 = Vector2(0, 30)
+const AUDIO_TEMPLATE: PackedScene = preload("res://scenes/management/audio_template.tscn") 
 
 @onready var animation: AnimationPlayer = $AnimationGoblin
 @onready var aux_animation_player = $AuxAnimationPlayer
 @onready var texture: Sprite2D = $TextureGoblin
+@onready var dust: GPUParticles2D = get_node("Dust")
 
 @export var move_speed: float = 192.0
 @export var distance_threshold: float = 60.0
@@ -29,9 +31,10 @@ func _physics_process(_delta: float) -> void:
 	var distance: float = global_position.distance_to(player_ref.global_position)
 	
 	if distance < distance_threshold:
+		dust.emitting = false
 		animation.play("attack")
 		return
-	
+
 	velocity = direction * move_speed
 	move_and_slide()
 	
@@ -52,9 +55,11 @@ func animate() -> void:
 		texture.flip_h = true
 		
 	if velocity != Vector2.ZERO:
+		dust.emitting = true
 		animation.play("run")
 		return
 	
+	dust.emitting = false
 	animation.play("idle")
 	
 func update_health(value: int) -> void:
@@ -80,3 +85,8 @@ func _on_animation_goblin_animation_finished(anim_name: String) -> void:
 		get_tree().call_group("level", "increase_kill_count")
 		get_tree().call_group("level", "update_score", transition_screen.player_score)
 		queue_free()
+
+func spawn_sfx(sfx_path: String) -> void:
+	var sfx = AUDIO_TEMPLATE.instantiate() as AudioStreamPlayer2D
+	sfx.sfx_to_play = sfx_path
+	add_child(sfx)
